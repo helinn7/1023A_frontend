@@ -1,5 +1,6 @@
 import { useState } from "react"
-import css
+import "./Pagina.css"
+
 interface ProdutosState {
     id: number,
     nome: string,
@@ -8,6 +9,9 @@ interface ProdutosState {
 }
 
 function Pagina() {
+    useEffect(()=>{
+        
+    },[])
     const [id, setId] = useState("");
     const [nome, setNome] = useState("");
     const [preco, setPreco] = useState("");
@@ -31,6 +35,11 @@ function Pagina() {
         }
         //Adicionar esse novo produto no vetor/array de produtos.
         setProdutos([...produtos, novoProduto]);
+        // Limpar os campos após o cadastro
+        setId("");
+        setNome("");
+        setPreco("");
+        setCategoria("");
     }
     function trataId(event: React.ChangeEvent<HTMLInputElement>) {
         setId(event.target.value)
@@ -82,10 +91,10 @@ function Pagina() {
                 </div>
                 <div className="container-cadastro">
                     <form onSubmit={TrataCadastro}>
-                        <input type="text" name="id" id="id" onChange={trataId} />
-                        <input type="text" name="nome" id="nome" onChange={trataNome} />
-                        <input type="text" name="preco" id="preco" onChange={trataPreco} />
-                        <input type="text" name="categoria" id="categoria" onChange={trataCategoria} />
+                        <input type="text" placeholder="ID" name="id" id="id" onChange={trataId} value={id} />
+                        <input type="text" placeholder="NOME" name="nome" id="nome" onChange={trataNome} value={nome} />
+                        <input type="text" placeholder="PREÇO" name="preco" id="preco" onChange={trataPreco} value={preco} />
+                        <input type="text" placeholder="CATEGORIA" name="categoria" id="categoria" onChange={trataCategoria} value={categoria} />
                         <input type="submit" value="Cadastrar" />
                     </form>
                 </div>
